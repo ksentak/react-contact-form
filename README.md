@@ -24,4 +24,4 @@ https://react-contact-form-bfug5.ondigitalocean.app/
 
 ##### Author
 
-Keaton Sentak - [Portfolio](https://keatonsentak.com) | [GitHub](https://github.com/ksentak)
+Keaton Sentak - [Portfolio](https://keatonsentak.dev) | [GitHub](https://github.com/ksentak)
