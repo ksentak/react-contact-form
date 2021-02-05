@@ -51,6 +51,11 @@ form {
   opacity: 1;
 }
 
+.formInput:focus::placeholder {
+  color: var(--light);
+  opacity: 1;
+}
+
 .errorMessage {
   color: #f45532;
   font-size: 14px;
