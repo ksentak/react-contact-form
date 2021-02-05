@@ -6,4 +6,4 @@ I used React Hook Form with EmailJS and React Toastify along with Bootstrap.
 
 You can view my live contact form here: https://react-contact-form-bfug5.ondigitalocean.app/
 
-![App Screenshot]('./public/contact-form.png)
+![App Screenshot]('./public/contact-form.png')
