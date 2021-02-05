@@ -1,13 +1,82 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+  --light: #d0d1d3;
+  --dark: #040d14;
+  --green: #21ce99;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: Poppins;
+  background: var(--dark);
+  line-height: 26px;
+  margin: 0;
+}
+
+h1 {
+  color: var(--green);
+}
+
+.App {
+  height: 75vh;
+  margin-top: 25vh;
+}
+
+form {
+  margin-top: 20px;
+  background: var(--dark);
+}
+
+.formRow {
+  margin: 10px 0 20px 0;
+}
+
+.formInput {
+  padding: 25px 10px;
+  background-color: var(--dark);
+  box-shadow: 0 0 0 2px var(--green);
+  border: none;
+  color: var(--green);
+}
+
+.formInput:focus {
+  background-color: var(--dark);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--green);
+  color: var(--light);
+}
+
+.formInput::placeholder {
+  color: var(--green);
+  opacity: 1;
+}
+
+.errorMessage {
+  color: #f45532;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+#notifyToast {
+  color: #fff;
+  border-radius: 6px;
+  width: 200px;
+  margin-left: 75px;
+  background-color: var(--green);
+}
+
+.submit-btn {
+  background-color: var(--dark);
+  color: var(--green) !important;
+  padding: 15px 50px;
+  border: 2px solid var(--green);
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.submit-btn:hover {
+  background-color: var(--green);
+  color: var(--dark) !important;
+  border: 2px solid var(--green);
 }

@@ -1,7 +1,12 @@
+import ContactForm from './ContactForm';
+
 const App = () => {
   return (
     <div className='App'>
-      <h1>Hey</h1>
+      <div className='container'>
+        <h1 className='text-center'>React Contact Form</h1>
+        <ContactForm />
+      </div>
     </div>
   );
 };
