@@ -19,7 +19,7 @@ h1 {
 
 .App {
   height: 75vh;
-  margin-top: 25vh;
+  margin-top: 15vh;
 }
 
 form {
@@ -84,4 +84,11 @@ form {
   background-color: var(--green);
   color: var(--dark) !important;
   border: 2px solid var(--green);
+}
+
+@media (max-width: 768px) {
+  .submit-message {
+    width: 125px;
+    margin-left: 200px;
+  }
 }
