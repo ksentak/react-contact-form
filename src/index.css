@@ -86,6 +86,12 @@ form {
   border: 2px solid var(--green);
 }
 
+.submit-btn:disabled:hover {
+  background-color: var(--dark);
+  color: var(--green) !important;
+  cursor: wait;
+}
+
 @media (max-width: 768px) {
   .submit-message {
     width: 125px;

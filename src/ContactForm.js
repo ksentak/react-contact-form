@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
@@ -5,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const ContactForm = () => {
   const { register, errors, handleSubmit, reset } = useForm();
+  const [disabled, setDisabled] = useState(false);
 
   const toastifySuccess = () => {
     toast('Form sent!', {
@@ -22,12 +24,14 @@ const ContactForm = () => {
   const onSubmit = async (data) => {
     // Send form email
     try {
+      setDisabled(true);
       const templateParams = {
         name: data.name,
         email: data.email,
         subject: data.subject,
         message: data.message
       };
+      console.log('clicked');
 
       await emailjs.send(
         process.env.REACT_APP_SERVICE_ID,
@@ -38,6 +42,7 @@ const ContactForm = () => {
 
       reset();
       toastifySuccess();
+      setDisabled(false);
     } catch (e) {
       console.log(e);
     }
@@ -120,7 +125,8 @@ const ContactForm = () => {
                     {errors.message && <span className='errorMessage'>Please enter a message</span>}
                   </div>
                 </div>
-                <button className='submit-btn' type='submit'>
+
+                <button className='submit-btn' disabled={disabled} type='submit'>
                   Submit
                 </button>
               </form>
