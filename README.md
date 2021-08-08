@@ -35,6 +35,8 @@ https://react-contact-form-bfug5.ondigitalocean.app/
 - React Toastify
 - Bootstrap
 
+---
+
 ### Author
 
 Keaton Sentak - [Portfolio](https://keatonsentak.dev) | [GitHub](https://github.com/ksentak)
