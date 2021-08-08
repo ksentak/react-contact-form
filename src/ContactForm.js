@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
+import emailjs from 'emailjs-com';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const ContactForm = () => {
   const { register, errors, handleSubmit, reset } = useForm();
   const [disabled, setDisabled] = useState(false);
 
+  // Function that displays a success toast on bottom right of the page when form submission is successful
   const toastifySuccess = () => {
     toast('Form sent!', {
       position: 'bottom-right',
@@ -21,18 +22,23 @@ const ContactForm = () => {
     });
   };
 
+  // Function called on submit that uses emailjs to send email of valid contact form
   const onSubmit = async (data) => {
-    // Send form email
+    // Destrcture data object
+    const { name, email, subject, message } = data;
     try {
+      // Disable form while processing submission
       setDisabled(true);
-      const templateParams = {
-        name: data.name,
-        email: data.email,
-        subject: data.subject,
-        message: data.message
-      };
-      console.log('clicked');
 
+      // Define template params
+      const templateParams = {
+        name,
+        email,
+        subject,
+        message
+      };
+
+      // Use emailjs to email contact form data
       await emailjs.send(
         process.env.REACT_APP_SERVICE_ID,
         process.env.REACT_APP_TEMPLATE_ID,
@@ -40,8 +46,11 @@ const ContactForm = () => {
         process.env.REACT_APP_USER_ID
       );
 
+      // Reset contact form fields after submission
       reset();
+      // Display success toast
       toastifySuccess();
+      // Re-enable form submission
       setDisabled(false);
     } catch (e) {
       console.log(e);
@@ -49,84 +58,110 @@ const ContactForm = () => {
   };
 
   return (
-    <div className='ContactForm'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-12 text-center'>
-            <div className='contactForm'>
-              <form id='contact-form' onSubmit={handleSubmit(onSubmit)} noValidate>
+    <div className="ContactForm">
+      <div className="container">
+        <div className="row">
+          <div className="col-12 text-center">
+            <div className="contactForm">
+              <form
+                id="contact-form"
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+              >
                 {/* Row 1 of form */}
-                <div className='row formRow'>
-                  <div className='col-6'>
+                <div className="row formRow">
+                  <div className="col-6">
                     <input
-                      type='text'
-                      name='name'
+                      type="text"
+                      name="name"
                       ref={register({
-                        required: { value: true, message: 'Please enter your name' },
+                        required: {
+                          value: true,
+                          message: 'Please enter your name'
+                        },
                         maxLength: {
                           value: 30,
                           message: 'Please use 30 characters or less'
                         }
                       })}
-                      className='form-control formInput'
-                      placeholder='Name'
+                      className="form-control formInput"
+                      placeholder="Name"
                     ></input>
-                    {errors.name && <span className='errorMessage'>{errors.name.message}</span>}
+                    {errors.name && (
+                      <span className="errorMessage">
+                        {errors.name.message}
+                      </span>
+                    )}
                   </div>
-                  <div className='col-6'>
+                  <div className="col-6">
                     <input
-                      type='email'
-                      name='email'
+                      type="email"
+                      name="email"
                       ref={register({
                         required: true,
                         pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
                       })}
-                      className='form-control formInput'
-                      placeholder='Email address'
+                      className="form-control formInput"
+                      placeholder="Email address"
                     ></input>
                     {errors.email && (
-                      <span className='errorMessage'>Please enter a valid email address</span>
+                      <span className="errorMessage">
+                        Please enter a valid email address
+                      </span>
                     )}
                   </div>
                 </div>
                 {/* Row 2 of form */}
-                <div className='row formRow'>
-                  <div className='col'>
+                <div className="row formRow">
+                  <div className="col">
                     <input
-                      type='text'
-                      name='subject'
+                      type="text"
+                      name="subject"
                       ref={register({
-                        required: { value: true, message: 'Please enter a subject' },
+                        required: {
+                          value: true,
+                          message: 'Please enter a subject'
+                        },
                         maxLength: {
                           value: 75,
                           message: 'Subject cannot exceed 75 characters'
                         }
                       })}
-                      className='form-control formInput'
-                      placeholder='Subject'
+                      className="form-control formInput"
+                      placeholder="Subject"
                     ></input>
                     {errors.subject && (
-                      <span className='errorMessage'>{errors.subject.message}</span>
+                      <span className="errorMessage">
+                        {errors.subject.message}
+                      </span>
                     )}
                   </div>
                 </div>
                 {/* Row 3 of form */}
-                <div className='row formRow'>
-                  <div className='col'>
+                <div className="row formRow">
+                  <div className="col">
                     <textarea
                       rows={3}
-                      name='message'
+                      name="message"
                       ref={register({
                         required: true
                       })}
-                      className='form-control formInput'
-                      placeholder='Message'
+                      className="form-control formInput"
+                      placeholder="Message"
                     ></textarea>
-                    {errors.message && <span className='errorMessage'>Please enter a message</span>}
+                    {errors.message && (
+                      <span className="errorMessage">
+                        Please enter a message
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                <button className='submit-btn' disabled={disabled} type='submit'>
+                <button
+                  className="submit-btn"
+                  disabled={disabled}
+                  type="submit"
+                >
                   Submit
                 </button>
               </form>
