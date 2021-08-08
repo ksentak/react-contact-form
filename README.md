@@ -31,7 +31,7 @@ When a user naviagtes to the page, they are brought to a basic contact form that
 
 ---
 
-#### Built with
+### Built with
 
 - React
 - React Hook Form
@@ -39,6 +39,6 @@ When a user naviagtes to the page, they are brought to a basic contact form that
 - React Toastify
 - Bootstrap
 
-##### Author
+### Author
 
 Keaton Sentak - [Portfolio](https://keatonsentak.dev) | [GitHub](https://github.com/ksentak)
