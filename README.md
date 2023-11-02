@@ -32,7 +32,6 @@ https://react-contact-form-01.netlify.app/
 - React
 - React Hook Form
 - EmailJS
-- React Toastify
 - Bootstrap
 - Vite
 
