@@ -1,20 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-:root {
-  --light: #d0d1d3;
-  --dark: #040d14;
-  --green: #21ce99;
-}
-
 body {
   font-family: Poppins;
-  background: var(--dark);
+  background: var(--light);
   line-height: 26px;
   margin: 0;
-}
-
-h1 {
-  color: var(--green);
 }
 
 .App {
@@ -24,7 +14,6 @@ h1 {
 
 form {
   margin-top: 20px;
-  background: var(--dark);
 }
 
 .formRow {
@@ -33,26 +22,18 @@ form {
 
 .formInput {
   padding: 15px 10px;
-  background-color: var(--dark);
-  box-shadow: 0 0 0 2px var(--green);
   border: none;
-  color: var(--green);
 }
 
 .formInput:focus {
-  background-color: var(--dark);
   outline: none;
-  box-shadow: 0 0 0 2px var(--green);
-  color: var(--light);
 }
 
 .formInput::placeholder {
-  color: var(--green);
   opacity: 1;
 }
 
 .formInput:focus::placeholder {
-  color: var(--light);
   opacity: 1;
 }
 
@@ -72,23 +53,13 @@ form {
 }
 
 .submit-btn {
-  background-color: var(--dark);
-  color: var(--green) !important;
   padding: 15px 50px;
-  border: 2px solid var(--green);
   border-radius: 10px;
   margin-bottom: 25px;
 }
 
-.submit-btn:hover {
-  background-color: var(--green);
-  color: var(--dark) !important;
-  border: 2px solid var(--green);
-}
 
 .submit-btn:disabled:hover {
-  background-color: var(--dark);
-  color: var(--green) !important;
   cursor: wait;
 }
 

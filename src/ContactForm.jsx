@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const ContactForm = () => {
@@ -9,7 +9,7 @@ const ContactForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
   const [disabled, setDisabled] = useState(false);
 
@@ -23,7 +23,7 @@ const ContactForm = () => {
       pauseOnHover: true,
       draggable: false,
       className: 'submit-feedback success',
-      toastId: 'notifyToast'
+      toastId: 'notifyToast',
     });
   };
 
@@ -40,7 +40,7 @@ const ContactForm = () => {
         name,
         email,
         subject,
-        message
+        message,
       };
 
       // Use emailjs to email contact form data
@@ -48,7 +48,7 @@ const ContactForm = () => {
         process.env.REACT_APP_SERVICE_ID,
         process.env.REACT_APP_TEMPLATE_ID,
         templateParams,
-        process.env.REACT_APP_USER_ID
+        process.env.REACT_APP_USER_ID,
       );
 
       // Reset contact form fields after submission
@@ -68,7 +68,11 @@ const ContactForm = () => {
         <div className='row'>
           <div className='col-12 text-center'>
             <div className='contactForm'>
-              <form id='contact-form' onSubmit={handleSubmit(onSubmit)} noValidate>
+              <form
+                id='contact-form'
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+              >
                 {/* Row 1 of form */}
                 <div className='row formRow'>
                   <div className='col-6'>
@@ -78,17 +82,21 @@ const ContactForm = () => {
                       {...register('name', {
                         required: {
                           value: true,
-                          message: 'Please enter your name'
+                          message: 'Please enter your name',
                         },
                         maxLength: {
                           value: 30,
-                          message: 'Please use 30 characters or less'
-                        }
+                          message: 'Please use 30 characters or less',
+                        },
                       })}
                       className='form-control formInput'
                       placeholder='Name'
                     ></input>
-                    {errors.name && <span className='errorMessage'>{errors.name.message}</span>}
+                    {errors.name && (
+                      <span className='errorMessage'>
+                        {errors.name.message}
+                      </span>
+                    )}
                   </div>
                   <div className='col-6'>
                     <input
@@ -97,13 +105,15 @@ const ContactForm = () => {
                       {...register('email', {
                         required: true,
                         pattern:
-                          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                       })}
                       className='form-control formInput'
                       placeholder='Email address'
                     ></input>
                     {errors.email && (
-                      <span className='errorMessage'>Please enter a valid email address</span>
+                      <span className='errorMessage'>
+                        Please enter a valid email address
+                      </span>
                     )}
                   </div>
                 </div>
@@ -116,18 +126,20 @@ const ContactForm = () => {
                       {...register('subject', {
                         required: {
                           value: true,
-                          message: 'Please enter a subject'
+                          message: 'Please enter a subject',
                         },
                         maxLength: {
                           value: 75,
-                          message: 'Subject cannot exceed 75 characters'
-                        }
+                          message: 'Subject cannot exceed 75 characters',
+                        },
                       })}
                       className='form-control formInput'
                       placeholder='Subject'
                     ></input>
                     {errors.subject && (
-                      <span className='errorMessage'>{errors.subject.message}</span>
+                      <span className='errorMessage'>
+                        {errors.subject.message}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -138,16 +150,24 @@ const ContactForm = () => {
                       rows={3}
                       name='message'
                       {...register('message', {
-                        required: true
+                        required: true,
                       })}
                       className='form-control formInput'
                       placeholder='Message'
                     ></textarea>
-                    {errors.message && <span className='errorMessage'>Please enter a message</span>}
+                    {errors.message && (
+                      <span className='errorMessage'>
+                        Please enter a message
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                <button className='submit-btn' disabled={disabled} type='submit'>
+                <button
+                  className='submit-btn btn btn-primary'
+                  disabled={disabled}
+                  type='submit'
+                >
                   Submit
                 </button>
               </form>
