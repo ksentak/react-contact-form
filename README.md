@@ -10,7 +10,7 @@ When a user naviagtes to the page, they are brought to a basic contact form that
 
 ### Deployed App
 
-https://react-contact-form-bfug5.ondigitalocean.app/
+https://react-contact-form-01.netlify.app/
 
 ![App Screenshot](./public/contact-form.png)
 
