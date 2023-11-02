@@ -34,6 +34,7 @@ https://react-contact-form-bfug5.ondigitalocean.app/
 - EmailJS
 - React Toastify
 - Bootstrap
+- Vite
 
 ---
 
