@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
 import emailjs from '@emailjs/browser';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 const ContactForm = () => {
   const {
@@ -12,19 +10,20 @@ const ContactForm = () => {
     formState: { errors },
   } = useForm();
   const [disabled, setDisabled] = useState(false);
+  const [alertInfo, setAlertInfo] = useState({
+    display: false,
+    message: '',
+    type: '',
+  });
 
-  // Function that displays a success toast on bottom right of the page when form submission is successful
-  const toastifySuccess = () => {
-    toast('Form sent!', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      className: 'submit-feedback success',
-      toastId: 'notifyToast',
-    });
+  // Shows alert message for form submission feedback
+  const toggleAlert = (message, type) => {
+    setAlertInfo({ display: true, message, type });
+
+    // Hide alert after 5 seconds
+    setTimeout(() => {
+      setAlertInfo({ display: false, message: '', type: '' });
+    }, 5000);
   };
 
   // Function called on submit that uses emailjs to send email of valid contact form
@@ -45,20 +44,23 @@ const ContactForm = () => {
 
       // Use emailjs to email contact form data
       await emailjs.send(
-        process.env.REACT_APP_SERVICE_ID,
-        process.env.REACT_APP_TEMPLATE_ID,
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
         templateParams,
-        process.env.REACT_APP_USER_ID,
+        import.meta.env.VITE_PUBLIC_KEY,
       );
 
-      // Reset contact form fields after submission
-      reset();
-      // Display success toast
-      toastifySuccess();
+      // Display success alert
+      toggleAlert('Form submission was successful!', 'success');
+    } catch (e) {
+      console.error(e);
+      // Display error alert
+      toggleAlert('Uh oh. Something went wrong.', 'danger');
+    } finally {
       // Re-enable form submission
       setDisabled(false);
-    } catch (e) {
-      console.log(e);
+      // Reset contact form fields after submission
+      reset();
     }
   };
 
@@ -172,10 +174,26 @@ const ContactForm = () => {
                 </button>
               </form>
             </div>
-            <ToastContainer />
           </div>
         </div>
       </div>
+      {alertInfo.display && (
+        <div
+          className={`alert alert-${alertInfo.type} alert-dismissible mt-5`}
+          role='alert'
+        >
+          {alertInfo.message}
+          <button
+            type='button'
+            className='btn-close'
+            data-bs-dismiss='alert'
+            aria-label='Close'
+            onClick={() =>
+              setAlertInfo({ display: false, message: '', type: '' })
+            } // Clear the alert when close button is clicked
+          ></button>
+        </div>
+      )}
     </div>
   );
 };

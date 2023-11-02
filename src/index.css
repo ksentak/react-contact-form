@@ -1,8 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
 body {
-  font-family: Poppins;
-  background: var(--light);
+  background: #000;
   line-height: 26px;
   margin: 0;
 }
@@ -22,19 +19,6 @@ form {
 
 .formInput {
   padding: 15px 10px;
-  border: none;
-}
-
-.formInput:focus {
-  outline: none;
-}
-
-.formInput::placeholder {
-  opacity: 1;
-}
-
-.formInput:focus::placeholder {
-  opacity: 1;
 }
 
 .errorMessage {
@@ -44,23 +28,10 @@ form {
   padding: 0;
 }
 
-#notifyToast {
-  color: #fff;
-  border-radius: 6px;
-  width: 200px;
-  margin-left: 75px;
-  background-color: var(--green);
-}
-
 .submit-btn {
   padding: 15px 50px;
   border-radius: 10px;
   margin-bottom: 25px;
-}
-
-
-.submit-btn:disabled:hover {
-  cursor: wait;
 }
 
 @media (max-width: 768px) {
